@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %} Edit User {% endblock %}
+{% block content %}
+    <h1 class="mb-4">Edit User</h1>
+    <form method="post" action="{% url 'update_user' user.id %}" class="form-horizontal">
+        {% csrf_token %}
+
+        <input type="hidden" name="user_id" value="{{ user.id }}">
+
+        <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" required
+                   value="{{ user.first_name }}">
+            {% if form.first_name.errors %}
+                <small class="text-danger">{{ form.first_name.errors.0 }}</small>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" required
+                   value="{{ user.last_name }}">
+            {% if form.last_name.errors %}
+                <small class="text-danger">{{ form.last_name.errors.0 }}</small>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required value=" {{ user.email }}">
+            {% if form.email.errors %}
+                <small class="text-danger">{{ form.email.errors.0 }}</small>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="telephone_number">Telephone Number:</label>
+            <input type="tel" class="form-control" id="telephone_number" name="telephone_number" required
+                   value="{{ user.telephone_number }}">
+            {% if form.telephone_number.errors %}
+                <small class="text-danger">{{ form.telephone_number.errors.0 }}</small>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="profile">Hotspot Profile:</label>
+            <select id="profile" name="profile" class="form-control" required>
+                <option value="">Select Profile</option>
+                {% for profile in profiles %}
+                    <option value="{{ profile }}">{{ profile }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" id="is_enabled" name="is_enabled" {% if user.is_enabled %}checked{% endif %}
+                   class="form-check-input">
+            <label class="form-check-label" for="is_enabled">Enabled</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Register</button>
+    </form>
+    <a href="{% url 'manage_users' %}" class="btn btn-secondary mt-3">Back to Manage Users</a>
+{% endblock %}
