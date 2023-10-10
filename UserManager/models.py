@@ -15,7 +15,7 @@ class Registration(models.Model):
     profile = models.CharField(max_length=60, null=True)
     terms_and_conditions = models.BooleanField(default=False)
     is_enabled = models.BooleanField(default=False)
-    sms_delivered = models.BooleanField(null=True)
+    sms_delivered = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_created=True,
                                       auto_now=True)
@@ -61,14 +61,6 @@ class RadGroupReply(models.Model):
     attribute = models.CharField(max_length=64)
     op = models.CharField(max_length=2)
     value = models.CharField(max_length=255)
-
-    # Define a ForeignKey or OneToOneField to represent the association
-    radcheck = models.ForeignKey(RadCheck, on_delete=models.CASCADE, related_name='group_replies', null=True,
-                                 blank=True)
-    radgroupcheck = models.ForeignKey(RadGroupCheck, on_delete=models.CASCADE, related_name='group_replies', null=True,
-                                      blank=True)
-    radusergroup = models.ForeignKey(RadUserGroup, on_delete=models.CASCADE, related_name='group_replies', null=True,
-                                     blank=True)
 
     class Meta:
         db_table = 'radgroupreply'

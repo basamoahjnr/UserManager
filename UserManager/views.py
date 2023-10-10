@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from UserManager.forms import RegistrationForm, UpdateUserForm
 from UserManager.mikrotik import hotspot_profiles
 from UserManager.models import Registration
+from UserManager.tasks import scheduler
 
 
 def generate_random_password(length=8):
@@ -129,3 +130,7 @@ def login_to_mikrotik(request):
             return redirect("login")
 
     return render(request, "user_manager/login.html")
+
+
+if not scheduler.running:
+    scheduler.start()
