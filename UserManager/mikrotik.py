@@ -1,13 +1,9 @@
 import os
 
-
 import routeros_api
-from django.contrib import messages
-from django.shortcuts import redirect, render
 from dotenv import load_dotenv
 
 load_dotenv()
-
 
 
 def create_hotspot_user(username, password):

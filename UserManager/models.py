@@ -16,6 +16,7 @@ class Registration(models.Model):
     terms_and_conditions = models.BooleanField(default=False)
     is_enabled = models.BooleanField(default=False)
     sms_delivered = models.BooleanField(default=False)
+    twilio_sid = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_created=True,
                                       auto_now=True)

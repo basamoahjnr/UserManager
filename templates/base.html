@@ -7,15 +7,51 @@
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS for responsiveness and gradient background -->
+    <style>
+        /* Gradient background */
+        body {
+            background-size: cover;
+            background: linear-gradient(to bottom, #4e9de6, #31415d) no-repeat fixed;
+        {#color: #fff;#}
+        }
+
+        .navbar {
+            background-color: #007BFF;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #fff;
+            margin-right: 15px;
+        }
+
+        /* Custom CSS for responsiveness */
+        @media (max-width: 767px) {
+            .container {
+                padding: 0;
+            }
+        }
+
+        .full-width-card {
+            border-radius: 0;
+        }
+    </style>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">User Manager</a>
-    <a class="navbar-brand" href="/login">Login</a>
-    <a class="navbar-brand" href="/registration">Register</a>
-
-</nav>
+{% if "manage_users.html" in request.path %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">User Manager</a>
+        <a class="navbar-brand" href="/login">Login</a>
+        <a class a class="navbar-brand" href="/registration">Register</a>
+    </nav>
+{% endif %}
 
 <main class="container mt-4">
     {% if messages %}
@@ -31,8 +67,8 @@
         </div>
     {% endif %}
 
-    <div class="row">
-        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-12">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 col-12">
             {% block content %}{% endblock %}
         </div>
     </div>
@@ -48,5 +84,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+{% if "registration_success.html" in request.path %}
+    {% block script %}{% endblock %}
+{% endif %}
 </body>
 </html>

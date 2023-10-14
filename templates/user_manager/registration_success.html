@@ -1,7 +1,23 @@
 {% extends 'base.html' %}
 {% block title %} Successful {% endblock %}
 {% block content %}
-    <h1>Registration Successful</h1>
-    <p>Thank you for registering. You will receive a username and password once your registration is validated.</p>
-    <p>if you are facing issues call IT Unit on <em>400</em>/<em>402</em><br/> Thank You</p>
+    <div class="container my-4">
+        <div class="card p-4 shadow text-center"> <!-- Center the text -->
+            <h3 class="font-weight-bold ">Registration Successful</h3> <!-- Styled with "happy-text" class -->
+            <p>Thank you for registering.</p>
+            <p style="margin-top: .5em;"> You will receive a username and password once your registration is
+                validated.</p>
+            <p>Call IT Support on: <em><strong>400</strong></em>/<em><strong>402</strong></em><br/>
+                Thank You</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        // Redirect to the login page after 20 seconds
+        setTimeout(function () {
+            window.location.href = '/login';
+        }, 20000); // 20,000 milliseconds (20 seconds)
+    </script>
 {% endblock %}

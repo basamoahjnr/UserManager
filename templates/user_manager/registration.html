@@ -1,52 +1,75 @@
 {% extends 'base.html' %}
 {% block title %} Registration {% endblock %}
 {% block content %}
-    <h1 class="mb-4">Registration</h1>
-    <form method="post">
-        {% csrf_token %}
+    <div class="container my-4">
+        <div class="card p-4 shadow">
+            <h2 class="mb-4">Registration</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="First Name">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                    </div>
+                    {% if form.first_name.errors %}
+                        <small class="text-danger">{{ form.first_name.errors.0 }}</small>
+                    {% endif %}
+                </div>
 
-        <div class="form-group">
-            <label for="first_name">First Name:</label>
-            <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="First Name">
-            {% if form.first_name.errors %}
-                <small class="text-danger">{{ form.first_name.errors.0 }}</small>
-            {% endif %}
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="last_name" name="last_name" required placeholder="Last Name">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                    </div>
+                    {% if form.last_name.errors %}
+                        <small class="text-danger">{{ form.last_name.errors.0 }}</small>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <div class="input-group">
+                        <input type="email" class="form-control" id="email" name="email" required placeholder="Email">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                    </div>
+                    {% if form.email.errors %}
+                        <small class="text-danger">{{ form.email.errors.0 }}</small>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="telephone_number">Telephone Number:</label>
+                    <div class="input-group">
+                        <input type="tel" class="form-control" id="telephone_number" name="telephone_number" required
+                            placeholder="Telephone Number">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        </div>
+                    </div>
+                    {% if form.telephone_number.errors %}
+                        <small class="text-danger">{{ form.telephone_number.errors.0 }}</small>
+                    {% endif %}
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="terms_and_conditions" name="terms_and_conditions"
+                        required {{ form.terms_and_conditions.value|yesno:"checked,unchecked" }}>
+                    <label class="form-check-label" for="terms_and_conditions">I accept the terms and conditions</label>
+                    {% if form.terms_and_conditions.errors %}
+                        <small class="text-danger">{{ form.terms_and_conditions.errors.0 }}</small>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Register</button>
+            </form>
         </div>
-
-        <div class="form-group">
-            <label for="last_name">Last Name:</label>
-            <input type="text" class="form-control" id="last_name" name="last_name" required placeholder="Last Name">
-            {% if form.last_name.errors %}
-                <small class="text-danger">{{ form.last_name.errors.0 }}</small>
-            {% endif %}
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" required placeholder="Email">
-            {% if form.email.errors %}
-                <small class="text-danger">{{ form.email.errors.0 }}</small>
-            {% endif %}
-        </div>
-
-        <div class="form-group">
-            <label for="telephone_number">Telephone Number:</label>
-            <input type="tel" class="form-control" id="telephone_number" name="telephone_number" required
-                   placeholder="Telephone Number">
-            {% if form.telephone_number.errors %}
-                <small class="text-danger">{{ form.telephone_number.errors.0 }}</small>
-            {% endif %}
-        </div>
-
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="terms_and_conditions" name="terms_and_conditions"
-                   required {{ form.terms_and_conditions.value|yesno:"checked,unchecked" }}>
-            <label class="form-check-label" for="terms_and_conditions">I accept the terms and conditions</label>
-            {% if form.terms_and_conditions.errors %}
-                <small class="text-danger">{{ form.terms_and_conditions.errors.0 }}</small>
-            {% endif %}
-        </div>
-
-        <button type="submit" class="btn btn-primary mt-3">Register</button>
-    </form>
+    </div>
 {% endblock %}

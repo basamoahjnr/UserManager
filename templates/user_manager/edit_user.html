@@ -58,7 +58,10 @@
             <label class="form-check-label" for="is_enabled">Enabled</label>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Register</button>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary mt-3">Register</button>
+            <a href="{% url 'manage_users' %}" class="btn btn-secondary mt-3">Back to Manage Users</a>
+        </div>
     </form>
-    <a href="{% url 'manage_users' %}" class="btn btn-secondary mt-3">Back to Manage Users</a>
+
 {% endblock %}

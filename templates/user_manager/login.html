@@ -1,25 +1,45 @@
 {% extends 'base.html' %}
 {% block title %} Login {% endblock %}
 {% block content %}
-    <h1>Login to MikroTik Hotspot</h1>
+    <div class="container my-4">
+        <div class="card p-4 shadow">
+            <h2 class="mb-4 font-weight-bold">Login to Hotspot</h2>
+            <p class="mb-3 font-italic "
+               style="font-size: small; color: indianred;">If you've registered and not
+                received your login details,
+                please contact IT Support.</p>
 
-    {% if message %}
-        <p>{{ message }}</p>
-    {% endif %}
+            {% if message %}
+                <p class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> {{ message }}</p>
+            {% endif %}
 
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="username" name="username" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text rounded-right"><i class="fas fa-user"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text rounded-right"><i class="fas fa-lock"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</button>
+                    <a href="/registration" class="btn btn-success"><i class="fas fa-user-plus"></i> Register</a>
+                </div>
+            </form>
         </div>
-
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+    </div>
 {% endblock %}
-

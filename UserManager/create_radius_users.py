@@ -15,7 +15,7 @@ def create_radius_user(user):
                                         attribute='Mikrotik-Group',
                                         op=':=',
                                         value=user.profile)
-    RadGroupCheck.objects.get_or_create(groupname='viip',
+    RadGroupCheck.objects.get_or_create(groupname='vvip',
                                         attribute='Mikrotik-Group',
                                         op=':=',
                                         value=user.profile)
@@ -25,13 +25,13 @@ def create_radius_user(user):
                                        groupname='vip',
                                        priority=1)
     RadUserGroup.objects.get_or_create(username=user.email,
-                                       groupname='viip',
+                                       groupname='vvip',
                                        priority=1)
 
     # Create RADIUS group reply attributes
     RadGroupReply.objects.get_or_create(groupname='vip', attribute='Some-Attribute', op=':=',
                                         value='Some-Value')
-    RadGroupReply.objects.get_or_create(groupname='viip', attribute='Some-Attribute', op=':=',
+    RadGroupReply.objects.get_or_create(groupname='vvip', attribute='Some-Attribute', op=':=',
                                         value='Some-Value')
 
     return user
