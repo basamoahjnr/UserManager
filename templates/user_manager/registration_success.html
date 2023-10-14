@@ -12,12 +12,9 @@
         </div>
     </div>
 {% endblock %}
-
-{% block script %}
-    <script>
-        // Redirect to the login page after 20 seconds
-        setTimeout(function () {
-            window.location.href = '/login';
-        }, 20000); // 20,000 milliseconds (20 seconds)
-    </script>
-{% endblock %}
+<script>
+    // Redirect to the login page after 20 seconds
+    setTimeout(function () {
+        window.location.href = '/login';
+    }, 20000); // 20,000 milliseconds (20 seconds)
+</script>

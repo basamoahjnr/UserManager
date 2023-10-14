@@ -8,20 +8,20 @@
         <input type="hidden" name="user_id" value="{{ user.id }}">
 
         <div class="form-group">
-            <label for="first_name">First Name:</label>
-            <input type="text" class="form-control" id="first_name" name="first_name" required
-                   value="{{ user.first_name }}">
-            {% if form.first_name.errors %}
-                <small class="text-danger">{{ form.first_name.errors.0 }}</small>
+            <label for="firstname">First Name:</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" required
+                   value="{{ user.firstname }}">
+            {% if form.firstname.errors %}
+                <small class="text-danger">{{ form.firstname.errors.0 }}</small>
             {% endif %}
         </div>
 
         <div class="form-group">
-            <label for="last_name">Last Name:</label>
-            <input type="text" class="form-control" id="last_name" name="last_name" required
-                   value="{{ user.last_name }}">
-            {% if form.last_name.errors %}
-                <small class="text-danger">{{ form.last_name.errors.0 }}</small>
+            <label for="lastname">Last Name:</label>
+            <input type="text" class="form-control" id="lastname" name="lastname" required
+                   value="{{ user.lastname }}">
+            {% if form.lastname.errors %}
+                <small class="text-danger">{{ form.lastname.errors.0 }}</small>
             {% endif %}
         </div>
 
@@ -34,11 +34,11 @@
         </div>
 
         <div class="form-group">
-            <label for="telephone_number">Telephone Number:</label>
-            <input type="tel" class="form-control" id="telephone_number" name="telephone_number" required
-                   value="{{ user.telephone_number }}">
-            {% if form.telephone_number.errors %}
-                <small class="text-danger">{{ form.telephone_number.errors.0 }}</small>
+            <label for="mobilephone">Telephone Number:</label>
+            <input type="tel" class="form-control" id="mobilephone" name="mobilephone" required
+                   value="{{ user.mobilephone }}">
+            {% if form.mobilephone.errors %}
+                <small class="text-danger">{{ form.mobilephone.errors.0 }}</small>
             {% endif %}
         </div>
 
@@ -53,7 +53,7 @@
         </div>
 
         <div class="mb-3 form-check">
-            <input type="checkbox" id="is_enabled" name="is_enabled" {% if user.is_enabled %}checked{% endif %}
+            <input type="checkbox" id="is_enabled" name="is_enabled" {% if user.isenabled %}checked{% endif %}
                    class="form-check-input">
             <label class="form-check-label" for="is_enabled">Enabled</label>
         </div>

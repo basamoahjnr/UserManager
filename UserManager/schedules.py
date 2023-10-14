@@ -5,7 +5,7 @@ from django.core.management.base import BaseCommand
 from twilio.rest import Client
 
 from UserManager.create_radius_users import create_radius_user
-from UserManager.models import Registration
+from UserManager.models import UserInfo
 
 
 class Command(BaseCommand):
@@ -22,7 +22,7 @@ class Command(BaseCommand):
         sms_message = options['sms_message']
 
         # Fetch users who satisfy the specified conditions and have been enabled
-        users = Registration.objects.filter(is_enabled=True)
+        users = UserInfo.objects.filter(is_enabled=True)
         if date_range:
             users = users.filter(created_at__range=date_range.split(','))
         if group:
@@ -43,16 +43,16 @@ class Command(BaseCommand):
             message = sms_client.messages.create(
                 body=sms_message,
                 from_=os.getenv("YOUR_TWILIO_PHONE_NUMBER"),
-                to=u.telephone_number
+                to=u.mobilephone
             )
 
             # Update sms_delivered based on Twilio response
             if message.status == "delivered":
                 print(f"{'STATUS:SUCCESS'}:{message}")  # log success messages
-                u.sms_delivered = True
+                u.smsdelivered = True
             else:
                 print(f"{'STATUS:FAILED'}:{message}")  # log failed messages
-                u.sms_delivered = False
+                u.smsdelivered = False
             u.save()
 
         time.sleep(1800)  # Sleep for 30 minutes
