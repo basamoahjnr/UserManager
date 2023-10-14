@@ -3,7 +3,9 @@ import string
 
 import requests
 from django.contrib import messages
-from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
+from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import render
 
 from UserManager.forms import RegistrationForm, UpdateUserForm
 from UserManager.mikrotik import hotspot_profiles
@@ -41,7 +43,10 @@ def registration_success(request):
 
 
 def manage_users(request):
-    users = Registration.objects.all()
+    user_list = Registration.objects.all()
+    paginator = Paginator(user_list, 10)  # Show 10 users per page
+    page = request.GET.get('page')
+    users = paginator.get_page(page)
     return render(request, 'user_manager/manage_users.html', {'users': users})
 
 
