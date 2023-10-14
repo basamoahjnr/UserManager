@@ -3,13 +3,11 @@ import string
 
 import requests
 from django.contrib import messages
-from django.core.paginator import Paginator
 from django.shortcuts import redirect, get_object_or_404
 from django.shortcuts import render
 
 from UserManager.forms import RegistrationForm, UpdateUserForm
 from UserManager.mikrotik import hotspot_profiles
-from UserManager.models import Registration
 from UserManager.tasks import scheduler
 
 
@@ -42,12 +40,32 @@ def registration_success(request):
     return render(request, 'user_manager/registration_success.html')
 
 
+from django.core.paginator import Paginator
+from .models import Registration
+
+
 def manage_users(request):
-    user_list = Registration.objects.all()
-    paginator = Paginator(user_list, 10)  # Show 10 users per page
+    # Get the current page number from the request
     page = request.GET.get('page')
+
+    # Set the number of items to display per page
+    items_per_page = 10
+
+    # Create a Paginator object for the Registration model
+    paginator = Paginator(Registration.objects.all().order_by('first_name'), items_per_page)
+
+    # Ensure the page parameter is a valid integer
+    try:
+        page = int(page)
+    except (ValueError, TypeError):
+        page = 1
+
+    # Get the Page object for the current page
     users = paginator.get_page(page)
-    return render(request, 'user_manager/manage_users.html', {'users': users})
+
+    return render(request, 'user_manager/manage_users.html', {
+        'users': users,
+    })
 
 
 def edit_user(request, user_id):
