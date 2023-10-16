@@ -16,7 +16,7 @@ logger = getLogger(__name__)
 def process_enabled_users():
     """Processes enabled users: creates RADIUS user accounts, groups, and sends SMS notifications."""
     try:
-        enabled_users = UserInfo.objects.filter(is_enabled=True, sms_delivered=False).order_by('-updated_at')[:10]
+        enabled_users = UserInfo.objects.filter(isenabled=True, sms_delivered=False).order_by('-updated_at')[:10]
 
         for user in enabled_users:
 

@@ -22,7 +22,7 @@ class Command(BaseCommand):
         sms_message = options['sms_message']
 
         # Fetch users who satisfy the specified conditions and have been enabled
-        users = UserInfo.objects.filter(is_enabled=True)
+        users = UserInfo.objects.filter(isenabled=True)
         if date_range:
             users = users.filter(created_at__range=date_range.split(','))
         if group:

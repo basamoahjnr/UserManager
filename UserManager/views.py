@@ -1,3 +1,4 @@
+import os
 import random
 import secrets
 import string
@@ -152,10 +153,9 @@ def login_to_mikrotik(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        hotspot_url = '192.168.56.128'
 
         # Replace with your MikroTik Hotspot API endpoint
-        hotspot_api_url = f"https://{hotspot_url}/login"
+        hotspot_api_url = f"http://{os.environ.get('HOTSPOT_URL')}/login"
 
         # Replace with the appropriate parameters for MikroTik login
         params = {
